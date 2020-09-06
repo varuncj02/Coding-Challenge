@@ -41,5 +41,19 @@ My initial idea was to implement a K-Means clustering algorithm as it is the mos
 The Dataset that is supposed to be analyzed is a non-globular dataset and neightbourhood clustering algorithms like DBSCAN can effectively determine whether each point is closer to its neighbour in the same cluster or whether it is closer to its neighbouring data points in other clusters. Since DBSCAN is a density based model it scans and visits every point and can come up with arbitrarily shaped clusters without the need for the user inputting the number of clusters.
 
 ## Libraries Used
+The following libraries were used in coding the <b>DBSCAN clustering algorithm</b>
+* SciKit Learn
+* Pandas
+* Numpy
+* MatplotLib
+
+## Solution
+In this solution the DBSCAN model that is built in inside the sklearn.cluster package is utilized. The code was written in Jupyter Notebook. The DBSCAN algorithm works by determining whether one point is part of another cluster by using two specific input values : eps and min_pts. <br />
+EPS: This is the maximum radius that forms the neighbourhood of one point. Every point inside this radius then becomes part of the cluster. 
+Min_pts: Minimum number of points inside an eps-neighbourhood that are needed to form a cluster. <br/>
+
+The algorithm for the DBSCAN algorithm is as follows:
+-  
+
 
 
