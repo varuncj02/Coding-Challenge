@@ -24,7 +24,7 @@ Regardless if you can or cannot answer the question, provide a short explanation
 
 ## Summary
 
-In this clustering coding challenge I used the DBSCAN (Density Based Spatial Clustering of Applications with Noise) algorithm to determine the number of clusters in the dataset provided to us by the `ClusterPlot.csv` file. The main intution behind my approach is that DBSCAN automatically detects the number of clusters in the dataset using just the input data and parameters. 
+In this clustering coding challenge I used the <b>DBSCAN (Density Based Spatial Clustering of Applications with Noise)</b> algorithm to determine the number of clusters in the dataset provided to us by the `ClusterPlot.csv` file. The main intution behind my approach is that DBSCAN automatically detects the number of clusters in the dataset using just the input data and parameters. 
 
 ## Introduction
 With a strong background in Data Structures and Algorithms in java, I spent this summer exploring python and its numpy and pandas library for data science. This is my first time working on a clustering problem so I had to do a little bit of research after I came across this challenge at 6:30 PM. 
@@ -58,14 +58,29 @@ The algorithm for the DBSCAN algorithm is as follows:
 * If it is more than min_pts a cluster is started 
 * If any other point becomes a part of this cluster then all the epsilon neighbours of that point become part of the same cluster too. 
 * This process is continued until all points have been visited.
+* Those points that do not get covered under a cluster then get marked as noise and are made outliers to the data
 <br />
 An important thing to determine in this type of solution is the epsilon value of the algorithm as a greater epsilon value means less clusters than normal and a smaller epsilon value means a lot of unecessary clusters. There is a set way to calculate the Epsilon value for every dataset and it is done by calculating the elbow knee point which is calculated as follows: 
+
 * Determine the nearest neighbours to every point and finding their distances
 * Plotting those distances in a graph
 * Selecting the y-axis value corresponding to the most curvature of the graph. 
 
 ![Image of Graph from matplotlib](https://github.com/varuncj02/Coding-Challenge/blob/master/epsilon.png)
+As you can see the curvature is the maximum at around 0.3 so the epsilon value of 0.3 was selected. From there it was simply making sure that right values were entered into the model. I choose min_pts as 3 because it is a 2 dimensional graph and the min_pts is generally set to (k+1) where k is the number of coordinates. 
+
+## Result
+Based on this model that was implemented the number of clusters determined in this `ClusterPlot.csv` dataset is 2 with the DBSCAN algorithm also detecting the outliers to the clusters marking them in purple.
+![Clustering Result](https://github.com/varuncj02/Coding-Challenge/blob/master/clustering%20result.png)
+This result is correct as the program calculated the clusters based on the neighbouring points and since there were two major areas of close neighbouring points the algorithm classified that as 2 datasets showing that there is some sort of similarity between the values. Every point that comes under one epsilon value is added and the epsilon point for this program was not selected arbitrarily but calculated using a proven neighbouring neighbours calculation method. Since all the parameters were selected based on mathematical reasoning I conclude that the output of 2 clusters is the correct answer to this clustering problem.
+
+## Improvements
+This algorithm is still rudimentary and multiple improvements can be made. One of the improvements I would like to add is to perform a hard clustering algorithm like K-Means and then comparing the clusters made by both to come up with a final answers on the number of clusters and how they are clustered. This algorithm requires a lot of memory with its memory run time being O(n * d) where d is the average number of neighbours of every point and could be solved by the more complex but memory effecient OPTICS algorithm. The third and final improvement is capping and flouring the variables at 1 and 99 percentile to reduce the outliers as clustering is very sensitive to outlier data points.
 
 
-
+Signing out at 3:15 AM, California. I loved this challenge and I am sure I will come up with more improvements in my dreams.
+## Sources
+https://www.aaai.org/Papers/KDD/1996/KDD96-037.pdf
+https://blog.dominodatalab.com/topology-and-density-based-clustering/
+https://towardsdatascience.com/understanding-dbscan-algorithm-and-implementation-from-scratch-c256289479c5
 
