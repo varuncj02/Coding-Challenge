@@ -50,10 +50,22 @@ The following libraries were used in coding the <b>DBSCAN clustering algorithm</
 ## Solution
 In this solution the DBSCAN model that is built in inside the sklearn.cluster package is utilized. The code was written in Jupyter Notebook. The DBSCAN algorithm works by determining whether one point is part of another cluster by using two specific input values : eps and min_pts. <br />
 EPS: This is the maximum radius that forms the neighbourhood of one point. Every point inside this radius then becomes part of the cluster. 
-Min_pts: Minimum number of points inside an eps-neighbourhood that are needed to form a cluster. <br/>
+Min_pts: Minimum number of points inside an eps-neighbourhood that are needed to form a cluster. <br />
 
 The algorithm for the DBSCAN algorithm is as follows:
--  
+* Select an arbitary point P in the graph
+* Point P's epsilon-neighbourhood points are determined
+* If it is more than min_pts a cluster is started 
+* If any other point becomes a part of this cluster then all the epsilon neighbours of that point become part of the same cluster too. 
+* This process is continued until all points have been visited.
+<br />
+An important thing to determine in this type of solution is the epsilon value of the algorithm as a greater epsilon value means less clusters than normal and a smaller epsilon value means a lot of unecessary clusters. There is a set way to calculate the Epsilon value for every dataset and it is done by calculating the elbow knee point which is calculated as follows: 
+* Determine the nearest neighbours to every point and finding their distances
+* Plotting those distances in a graph
+* Selecting the y-axis value corresponding to the most curvature of the graph. 
+
+![Image of Graph from matplotlib](https://github.com/varuncj02/Coding-Challenge/blob/master/epsilon.png)
+
 
 
 
